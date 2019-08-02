@@ -7,7 +7,7 @@ export default class Detail extends Component {
   render() {
     return (
       <ProductConsumer>
-        {({ detailProduct }) => {
+        {({ detailProduct, addToCart }) => {
           //prettier-ignore
           const {id, company, img, info, price, title, inCart} = detailProduct;
           return (
@@ -45,7 +45,13 @@ export default class Detail extends Component {
                     <Link to="/">
                       <ButtonContainer>back to products</ButtonContainer>
                     </Link>
-                    <ButtonContainer disabled={inCart ? true : false}>
+                    <ButtonContainer
+                      cart
+                      disabled={inCart ? true : false}
+                      onClick={() => {
+                        addToCart(id);
+                      }}
+                    >
                       {inCart ? 'inCart' : 'add to cart'}
                     </ButtonContainer>
                   </div>
